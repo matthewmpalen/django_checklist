@@ -1,3 +1,6 @@
+# Django
+from django.core.exceptions import ValidationError
+
 # External
 from rest_framework import viewsets
 
@@ -20,6 +23,9 @@ class ChecklistViewSet(viewsets.ModelViewSet):
             return Checklist.objects.none()
 
         return Checklist.objects.filter(user=self.request.user)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
 
 class ItemViewSet(viewsets.ModelViewSet):
     queryset = Item.objects.all()
