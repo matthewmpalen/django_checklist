@@ -9,7 +9,7 @@ from django_checklist.common.models import Tag
 class Checklist(models.Model):
     user = models.ForeignKey(User)
     title = models.CharField(max_length=30)
-    tags = models.ManyToManyField(Tag, related_name='%(class)s')
+    tags = models.ManyToManyField(Tag, related_name='%(class)s', blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
